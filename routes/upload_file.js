@@ -28,15 +28,12 @@ app.post('/upload_file',upload.single('file') ,function (req, res) {
           if (!req.file) {
                 console.log("No file received");
                 message = "Error! in document upload."
-                res.send({message: message, status:'danger'});
         } else{
               
             console.log('file received');
-            var sql = `INSERT INTO file_uploads (name, type,size) VALUES ('${req.file.filename}','${req.file.mimetype}',${req.file.size});`;
+            var sql = `INSERT INTO file_uploads (name, type,size) VALUES ('${req.file.filename}','${req.file.mimetype}','${req.file.size});`;
       
-              
             message = "Successfully! uploaded";
-            res.send({message: message, status:'success'});
        
             }
       });
