@@ -1,32 +1,18 @@
 const express = require('express');
-const mysql = require('mysql');
-const router = express.Router();
-const db = require('../conn/conn');
+const route=express.Router();
+const mysqlConn= require('../conn/conn');
 
-//get student profile
+route.get('/profile/:id', (req, res) => {
 
-router.get('/student_profile', function(req, res){
-
-    const email = req.body.email;
-
-    var myQuery = "SELECT * FROM applicant_info WHERE email = ?";
-    
-
-    db.query (myQuery, [email], function(err, results){
+    mysqlConn.query('SELECT * FROM applicant_info WHERE id = ?', [req.params.id], (err, rows) => {
         if(err){
-            
-            res.send({
-                code : 400,
-                message : err
-            })
-        }else{
-            
-            
-            res.send({results
+            throw err
+          }else{
+            console.log(rows);
+            return res.send(rows);  
+          }
+    });
+    
+  })
 
-            })
-         }
-    })
-});
-
-module.exports = router ;
+module.exports=route;
