@@ -7,15 +7,15 @@ const  db = require('../conn/conn');
 
         router.post('/register', function(req, res){  
             var post = {
-                
-
-                "first_name" : req.body.first_name,
-                "last_name" : req.body.last_name,
-                "phone_no" : req.body.phone_no,
+                "id" : req.body.id,
+                "firstName" : req.body.firstName,
+                "lastName" : req.body.lastName,
                 "email" : req.body.email,
+                "address" : req.body.address,
+                "contactNumber" : req.body.contactNumber,
+                "specialization" : req.body.specialization,
+                "gender" : req.body.gender,
                 "password" : req.body.password
-
-        
             };
         
             if(!post){
@@ -25,10 +25,9 @@ const  db = require('../conn/conn');
                 })
             }
         
-            var myQuery = "INSERT INTO register SET ?";
+            var myQuery = "INSERT INTO applicant_info SET ?";
             db.query(myQuery, [post], function(err, results, fields){
-                if(err){
-                    
+                if(err){ 
                     res.send({
                         data : err,
                         code : 400,
@@ -37,8 +36,6 @@ const  db = require('../conn/conn');
                 }else{
                     var email = req.body.email
                     db.query('select * from register where email = ?',email, function(err, results, fields){
-                        
-                 
                     return res.send(results)
                 })
             }

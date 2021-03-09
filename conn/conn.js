@@ -7,7 +7,7 @@ const mysqlConn =mysql.createConnection({
   host:'localhost',
   user:'root',
   password:'',
-  database:'icepweb',
+  database:'icepDB',
   multipleStatements: true
 
 })
@@ -15,18 +15,13 @@ const mysqlConn =mysql.createConnection({
 
 mysqlConn.connect((err)  =>{
 
-if(!err)
+      if(!err){
+          console.log('ICEP database connected succeesfully');
+      }else{
+          console.log('Sory could not connect to ICEP database');
+      }
 
-console.log('db connection succeed');
-
-
-else
-
-
-console.log('db connection failed');
-
-
-});
+    });
 
 
 module.exports =mysqlConn;

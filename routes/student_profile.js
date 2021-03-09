@@ -9,7 +9,7 @@ router.get('/student_profile', function(req, res){
 
     const email = req.body.email;
 
-    var myQuery = "SELECT * FROM register WHERE email = ?";
+    var myQuery = "SELECT * FROM applicant_info WHERE email = ?";
     
 
     db.query (myQuery, [email], function(err, results){

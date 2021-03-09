@@ -6,9 +6,9 @@ const db = require('../conn/conn');
 
 router.get('/n',function(req,res){
 
-    
         var email= req.body.email;
         var password = req.body.password;
+        
         db.query('SELECT * FROM register WHERE email = ?',[email], function (error, results, fields) {
         if (error) {
 
