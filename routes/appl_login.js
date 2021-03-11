@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const router = express.Router();
 const db = require('../conn/conn');
 
-router.get('/n',function(req,res){
+router.get('/applicant_login',function(req,res){
 
         var email= req.body.email;
         var password = req.body.password;
@@ -13,17 +13,18 @@ router.get('/n',function(req,res){
         if (error) {
 
           res.send({
-            "code":400,
-            "failed":"error ocurred"
+            code:400,
+            message:"error ocurred unable to login"
           })
         }else{
          
           if(results.length >0){
             if(results[0].password == password){
                 
-                var username = req.body.username
+                //var username = req.body.username
                 db.query('select * from register where email = ?',email, function(err, results, fields){  
                     return res.send(results)
+                    return res.send('welcome to icep login ' )
                 })
             }
             else{
