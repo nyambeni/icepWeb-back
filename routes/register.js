@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const  db = require('../conn/conn');
+//const nodemailer = require('nodemailer');
 
 //register student 
 
@@ -10,7 +11,6 @@ const  db = require('../conn/conn');
                 "id" : req.body.id,
                 "first_name" : req.body.first_name,
                 "last_name" : req.body.last_name,
-                "phone_no" : req.body.phone_no,
                 "email" : req.body.email,
                 "password" : req.body.password
             };
@@ -25,7 +25,22 @@ const  db = require('../conn/conn');
                     message : "FALSE"
                 })
             }
-        
+            if (!email || !password ){
+                return response.send({ msg: 'please insert email and password ' });
+             }
+             if (password.length < 6) {
+               return response.send({ msg: 'Password must be at least 6 characters' });
+               }
+               if (!first_name || !last_name) {
+                return response.send({ msg: 'Please enter all fields' });
+                }
+
+                /*var user = post;
+    
+                bcrypt.hash(user.password, 10, function(err, hash){
+                        if(err) console.log(err);
+                        user.password = hash;*/
+
             var myQuery = "INSERT INTO register SET ?";
             db.query(myQuery, [post], function(err, results, fields){
                 if(err){ 
