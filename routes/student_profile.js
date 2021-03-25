@@ -1,9 +1,20 @@
 const express = require('express');
-const mysql = require('mysql');
-const router = express.Router();
-const db = require('../conn/conn');
+const route=express.Router();
+const mysqlConn= require('../conn/conn');
 
-//get student profile
+route.get('/profile/:id', (req, res) => {
+
+
+    mysqlConn.query('SELECT * FROM applicant_info WHERE id = ?', [req.params.id], (err, rows) => {
+        if(err){
+            throw err
+          }else{
+            console.log(rows);
+            return res.send(rows);  
+          }
+    });
+    
+  })
 
 router.get('/student_profile', function(req, res){
 
@@ -27,4 +38,5 @@ router.get('/student_profile', function(req, res){
     })
 });
 
-module.exports = router ;
+
+module.exports=route;
