@@ -23,13 +23,16 @@ app.use(function (req, res, next) {
  app.use('/', require('./routes/update_profile'));
  app.use('/', require('./routes/admin_reg'));
  app.use('/', require('./routes/application'));
- app.use('/', require('./routes/admin_profile'));
+
  app.use('/', require('./routes/update_admin_profile'));
  app.use('/', require('./routes/upload_cv'));
  app.use('/', require('./routes/upload_id'));
  app.use('/', require('./routes/appl_login'));
  app.use('/', require('./routes/admin_login'));
  app.use('/', require('./routes/upload_academic'));
+ app.use('/', require('./routes/view_profiles'));
+ app.use('/', require('./routes/view_applications'));
+ app.use('/', require('./routes/detele_profile'));
 
 // start server
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 5000;

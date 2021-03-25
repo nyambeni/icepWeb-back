@@ -57,11 +57,12 @@ router.use(bodyParser.json());
                 return response.send({ msg: 'Please enter all fields' });
                 }
 
-                /*var user = post;
+                var user = post;
     
-                bcrypt.hash(user.password, 10, function(err, hash){
+               /* bcrypt.hash(user.password, 10, function(err, hash){
                         if(err) console.log(err);
-                        user.password = hash;*/
+                        user.password = hash;
+                    })*/
 
             var myQuery = "INSERT INTO register SET ?";
             db.query(myQuery, [post], function(err, results, fields){
