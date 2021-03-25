@@ -5,7 +5,7 @@ const  db = require('../conn/conn');
 
 //Application 
 
-        router.post('/application', function(req, res){  
+        router.post('/application', (req, res) =>{  
             var post = {
                 
 
@@ -28,8 +28,8 @@ const  db = require('../conn/conn');
                 })
             }
         
-            var myQuery = "INSERT INTO applicantinfo SET ?";
-            db.query(myQuery, [post], function(err, results, fields){
+            
+            db.query('INSERT INTO applicantinfo SET ?', [post], function(err, results, fields){
                 if(err){
                     
                     res.send({
@@ -39,7 +39,7 @@ const  db = require('../conn/conn');
                     }); 
                 }else{
                     var email = req.body.email
-                    db.query('select * from applicantinfo where email = ?',email, function(err, results, fields){
+                    db.query('select * from applicantinfo where email = ?',email, (err, results, fields) =>{
                         
                  
                     return res.send(results)
