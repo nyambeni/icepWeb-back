@@ -9,10 +9,7 @@ const  db = require('../conn/conn');
             var post = {
                 
 
-                "first_name" : req.body.first_name,
-                "last_name" : req.body.last_name,
-                "username" : req.body.username,
-                "phone_no" : req.body.phone_no,
+               
                 "email" : req.body.email,
                 "password" : req.body.password
 

@@ -11,16 +11,15 @@ const  db = require('../conn/conn');
 
                 "firstname": req.body.firstname, 
                 "lastname": req.body.lastname,
-                "email": req.body.email,
-                "idno": req.body.idno,
-                "gender": req.body.gender, 
+                "studentno": req.body.studentno,
                 "specialization": req.body.specialization,
                 "mobileno": req.body.mobileno,  
-                "proglanguages":  req.body.proglanguages
-
+                "email": req.body.email,
+                "document":  req.body.document,
+                "status": req.body.status 
         
             };
-        
+   
             if(!post){
                 res.send({
                     code : 400,

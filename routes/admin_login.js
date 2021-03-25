@@ -7,9 +7,9 @@ const db = require('../conn/conn');
 router.get('/n',function(req,res){
 
     
-        var username= req.body.username;
+        var email= req.body.email;
         var password = req.body.password;
-        db.query('SELECT * FROM admin_reg WHERE username = ?',[username], function (error, results, fields) {
+        db.query('SELECT * FROM admin_reg WHERE email = ?',[email], function (error, results, fields) {
         if (error) {
 
           res.send({
@@ -21,22 +21,22 @@ router.get('/n',function(req,res){
           if(results.length >0){
             if(results[0].password == password){
                 
-                var username = req.body.username
-                db.query('select * from admin_reg where username = ?',username, function(err, results, fields){  
+                var email = req.body.email
+                db.query('select * from admin_reg where username = ?',email, function(err, results, fields){  
                     return res.send(results)
                 })
             }
             else{
               res.send({
                 "code":204,
-                "success":"Username and password does not match"
+                "success":"email and password does not match"
                   });
             }
           }
           else{
             res.send({
               "code":204,
-              "success":"Username does not exist"
+              "success":"email does not exist"
                 });
           }
         }
@@ -44,5 +44,25 @@ router.get('/n',function(req,res){
 
 })
 
+router.get('/register', function (req, res) {
+
+   
+  mysqlConn.query('SELECT * FROM register ', (error, result) => {
+          if (error) throw error;
+   
+          res.send(result);
+      });
+  });
+
+  router.get('/applications', function (req, res) {
+
+   
+    mysqlConn.query('SELECT * FROM applicantinfo ', (error, result) => {
+            if (error) throw error;
+     
+            res.send(result);
+        });
+    });
+  
 
 module.exports = router ;
