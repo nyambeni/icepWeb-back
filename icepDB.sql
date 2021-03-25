@@ -1,25 +1,27 @@
-CREATE TABLE applicant_info(
-        id int(11) AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE applicant(
+        applicationId int(11) AUTO_INCREMENT PRIMARY KEY,
 	firstName VARCHAR(50),
         lastName VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
-        address VARCHAR(50) NOT NULL,
-        contactNumber VARCHAR(13) NOT NULL,
-        specialization VARCHAR(70) NOT NULL, 
-        gender varchar(10) NOT NULL,
+        status varchar(50) DEFAULT 'Pending',
         password VARCHAR(30) NOT NULL  
 );
-CREATE TABLE admin_reg(
-       id int(11) AUTO_INCREMENT PRIMARY KEY,
-       firstName varchar(50) NOT NULL,
-       lastName varchar(50) NOT NULL,
+CREATE TABLE applications(
+       appId int(11) AUTO_INCREMENT PRIMARY KEY,
+       firstName VARCHAR(50),
+       lastName VARCHAR(30) NOT NULL,
+       studentNo VARCHAR(9) NOT NULL,
+       contactNo VARCHAR(13) NOT NULL,
+       email VARCHAR(50) NOT NULL UNIQUE,
+       supportingDocs VARCHAR(30) NOT NULL  
+);
+CREATE TABLE admin(
+       adminId int(5) AUTO_INCREMENT PRIMARY KEY,
        email varchar(255) NOT NULL UNIQUE,
-       phone_no varchar(10) NOT NULL,
        password varchar(50) NOT NULL
 );
-
 CREATE TABLE file_uploads(
-        id int(11) AUTO_INCREMENT PRIMARY KEY,
+        apldId int(11) AUTO_INCREMENT PRIMARY KEY,
         name varchar(255) NOT NULL,
         type varchar(255) NOT NULL,
         size varchar(255) NOT NULL
