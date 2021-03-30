@@ -65,10 +65,9 @@ router.delete('/:applicationId', (req, res) => {
   })
 
   // update application status
-  router.put('/:applicationId', (req, res) => {
+  router.put('/update', (req, res) => {
     
-       const {status} = req.body
-       const {applicationId} = req.params
+       const {status, applicationId} = req.body
   
       db.query('update applicant set status = ? where applicationId = ?', [status, applicationId], (err, rows) =>{
         if(!err){
@@ -77,7 +76,7 @@ router.delete('/:applicationId', (req, res) => {
           console.log(err)
         }
       })
-      console.log(applicationId)
+      console.log(req.body)
     })  
 
 module.exports = router ;
