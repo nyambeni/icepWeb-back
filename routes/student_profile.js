@@ -1,6 +1,7 @@
 const express = require('express');
 const route=express.Router();
 const mysqlConn= require('../conn/conn');
+const router = require('./view_applications');
 
 route.get('/profile/:id', (req, res) => {
 
@@ -39,4 +40,4 @@ router.get('/student_profile', function(req, res){
 });
 
 
-module.exports=route;
+module.exports=router;

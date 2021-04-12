@@ -4,18 +4,20 @@ const mysql = require('mysql');
 const  db = require('../conn/conn');
 
 //Udate profile
-router.put('/update_admin_profile',(req,res)=>{   
+router.put('/update_profile', (req, res) => {
+    const {first_name} = req.body
+    const {last_name} = req.body
+    const {email} = req.body
+    const {password} = req.body
+    const {id} = req.params
 
-    let student = req.body;
-    var sql = "SET @id = ?;SET @first_name = ?;SET @last_name = ?;SET @username = ?;SET @phone_no = ?;SET @email = ?;SET @password = ?;\
-    CALL update_admin(@id,@first_name,@last_name,@username,@phone_no,@email,@password);";
-
-    db.query(sql,[student.id,student.first_name,student.last_name,student.username,student.phone_no,student.email,student.password],(err,rows,fields)=>{
-        if(!err)
-           res.send('Updated...');
-        else
-            console.log(err);
-    })
-    
-});
+   db.query('update register  set first_name = ? , last_name = ?, email= ?, password=? where id = ?', [first_name,last_name,email,password, id], (err, rows) =>{
+     if(!err){
+       res.send('status has been updated.')
+     }else{
+       console.log(err)
+     }
+   })
+   console.log(id)
+ }) 
 module.exports = router ;
