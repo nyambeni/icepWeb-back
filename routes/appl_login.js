@@ -66,7 +66,7 @@ router.get('/applicant_login',function(req,res){
                 });
           }
         }
-    });
+    }); 
 
 })
 
