@@ -3,6 +3,8 @@ const route=express.Router();
 const mysqlConn= require('../conn/conn');
 
 route.get('/profile/:id', (req, res) => {
+<<<<<<< HEAD
+=======
 
 
     mysqlConn.query('SELECT * FROM applicant_info WHERE id = ?', [req.params.id], (err, rows) => {
@@ -15,28 +17,21 @@ route.get('/profile/:id', (req, res) => {
     });
     
   })
+>>>>>>> 1bfa9fa95c36af52419832dda2ff0438ea24bf9b
 
-router.get('/student_profile', function(req, res){
-
-    const email = req.body.email;
-
-    var myQuery = "SELECT * FROM register WHERE email = ?";
-    
-
-    db.query (myQuery, [email], (err, results) =>{
+    mysqlConn.query('SELECT * FROM applicant WHERE id = ?', [req.params.id], (err, rows) => {
         if(err){
-            
-            res.send({
-                code : 400,
-                message : err
-            })
-        }else{
-            
-            
-           return  res.send({results})
-         }
-    })
-});
+            throw err
+          }else{
+            console.log(rows);
+            return res.send(rows);  
+          }
+    });
+    
+  })
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1bfa9fa95c36af52419832dda2ff0438ea24bf9b
 module.exports=route;

@@ -1,8 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require('mysql');
 const  db = require('../conn/conn');
+router.use(express.urlencoded({extended: true}))
+router.use(express.json());
 
+<<<<<<< HEAD
+
+//register student 
+        router.post('/stu_register', function(req, res){ 
+=======
 const bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
@@ -26,9 +32,27 @@ router.use(bodyParser.json());
             };
         
              
+>>>>>>> 1bfa9fa95c36af52419832dda2ff0438ea24bf9b
 
-  
+       // var [{firstName, lastName, email, password}] = req.body
+       // var post = [{"firstName" : req.body.firstName, "lastName" : req.body.lastName,"email" : req.body.email, "password" : req.body.password}];
+    
+       var firstName = req.body.firstName
+       var lastName = req.body.lastName
+       var email = req.body.email
+       var password = req.body.password
 
+<<<<<<< HEAD
+        db.query('SELECT email FROM applicant WHERE email = ?', [email], async(err, results) => {
+            if(err){
+             throw err 
+            }
+            if(results.length > 0) 
+            {
+             return res.send({message: 'Email already exist'});
+            } 
+            db.query('INSERT INTO applicant SET firstName = ?, lastName = ?, email = ?, password = ?', [firstName, lastName, email, password], (err, results, fields) => {
+=======
 
             if(!post){
                 res.send({
@@ -66,13 +90,18 @@ router.use(bodyParser.json());
 
             var myQuery = "INSERT INTO register SET ?";
             db.query(myQuery, [post], function(err, results, fields){
+>>>>>>> 1bfa9fa95c36af52419832dda2ff0438ea24bf9b
                 if(err){ 
-                    res.send({
-                        data : err,
-                        code : 400,
-                        message : "Account already exists!!!"
-                    }); 
+                  throw err   
                 }else{
+<<<<<<< HEAD
+                  return res.send({message: firstName + ', You have created a profile succesfully'});  
+                } 
+        });   
+    })
+    })
+module.exports = router; 
+=======
                     var email = req.body.email
                     db.query('select * from register where email = ?',email, (err, results, fields) =>{
                     return res.send(results)
@@ -82,3 +111,4 @@ router.use(bodyParser.json());
         
             })
 module.exports = router;
+>>>>>>> 1bfa9fa95c36af52419832dda2ff0438ea24bf9b
